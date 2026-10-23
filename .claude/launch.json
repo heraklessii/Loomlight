@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "loomlight-web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev:web"
+      ],
+      "port": 5317
+    },
+    {
+      "name": "itch-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "vite",
+        "marketing/itch",
+        "--port",
+        "5320",
+        "--strictPort"
+      ],
+      "port": 5320
+    }
+  ]
+}

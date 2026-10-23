@@ -1,0 +1,46 @@
+/* Shared look of the itch.io assets: the app's own fonts and tokens (decision 002). */
+@font-face { font-family: 'Pixelify Sans'; src: url('fonts/pixelify-sans-latin-wght-normal.woff2') format('woff2'); font-weight: 400 700; }
+@font-face { font-family: 'Pixelify Sans'; src: url('fonts/pixelify-sans-latin-ext-wght-normal.woff2') format('woff2'); font-weight: 400 700; unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('fonts/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2'); font-weight: 200 800; }
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2') format('woff2'); font-weight: 200 800; unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: 'JetBrains Mono'; src: url('fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2'); font-weight: 100 800; }
+
+:root {
+  --bg-0: #0e0e0e;
+  --bg-1: #141414;
+  --bg-2: #1b1b1b;
+  --line: #2a2a2a;
+  --text-1: #ededed;
+  --text-2: #b0b0b0;
+  --text-3: #7a7a7a;
+  --accent: #ffb547;
+  --accent-ink: #1f1404;
+  --font-pixel: 'Pixelify Sans', sans-serif;
+  --font-ui: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg-0); color: var(--text-1); font-family: var(--font-ui); -webkit-font-smoothing: antialiased; overflow: hidden; }
+
+.pixel { image-rendering: pixelated; }
+
+/* the woven 4×4 logo mark */
+.mark { display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(var(--s) * 0.25); width: calc(var(--s) * 4.75); }
+.mark i { aspect-ratio: 1; border-radius: calc(var(--s) * 0.15); background: var(--text-1); opacity: 0.9; }
+.mark i:nth-child(8n + 1), .mark i:nth-child(8n + 3), .mark i:nth-child(8n + 6), .mark i:nth-child(8n + 8) { background: var(--accent); opacity: 1; }
+
+.wordmark { font-family: var(--font-pixel); font-weight: 700; line-height: 0.95; letter-spacing: 0.01em; }
+.wordmark b { color: var(--accent); font-weight: 700; }
+
+/* faint pixel weave used behind compositions */
+.weave {
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 50%, transparent 50%),
+    linear-gradient(rgba(255, 181, 71, 0.02) 50%, transparent 50%);
+  background-size: 8px 8px, 8px 8px;
+}
+
+.chip { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--bg-2); color: var(--text-2); font-size: 14px; font-weight: 600; }
+.chip.amber { border-color: rgba(255, 181, 71, 0.5); background: rgba(255, 181, 71, 0.12); color: var(--accent); }

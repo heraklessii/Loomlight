@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Loomlight — itch.io background tile (96×96)</title>
+    <style>
+      /* A barely visible pixel weave; tiled behind the page column. Rendered at 1× so pixels stay sharp. */
+      html, body { margin: 0; width: 96px; height: 96px; overflow: hidden; background: #0e0e0e; }
+      .tile { position: relative; width: 96px; height: 96px; }
+      .tile i { position: absolute; width: 4px; height: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="tile" id="t"></div>
+    <script>
+      // 4×4 weave of 4 px "pixels" every 24 px: amber warp / grey weft at very low contrast
+      const t = document.getElementById('t')
+      for (let y = 0; y < 96; y += 24) {
+        for (let x = 0; x < 96; x += 24) {
+          const warp = ((x + y) / 24) % 2 === 0
+          const i = document.createElement('i')
+          i.style.left = x + 10 + 'px'
+          i.style.top = y + 10 + 'px'
+          i.style.background = warp ? '#1d1810' : '#161616'
+          t.appendChild(i)
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loomlight page preview</title>
+    <!-- How the itch.io page will look with the theme in page.md (colours, fonts, banner,
+         screenshots). Not itch's own markup — a stand-in to judge our content. The
+         description is read from page.md, so the text has one source. -->
+    <link rel="stylesheet" href="assets.css" />
+    <style>
+      :root {
+        --page-bg: #0e0e0e;
+        --page-bg2: #161616;
+        --page-text: #ededed;
+        --page-link: #ffb547;
+        --page-button: #ffb547;
+        --page-header: #ffffff;
+      }
+      html, body { overflow: auto; }
+      body {
+        min-height: 100vh;
+        background: var(--page-bg) url('out/background-tile-96x96.png') repeat fixed;
+        color: var(--page-text);
+        font-family: var(--font-ui);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .bar { display: flex; justify-content: center; gap: 8px; padding: 10px; font-size: 13px; color: var(--text-3); }
+      .bar button { height: 28px; padding: 0 12px; border: 1px solid var(--line); border-radius: 99px; background: var(--bg-1); color: var(--text-2); font: inherit; font-weight: 600; cursor: pointer; }
+      .bar button.on { border-color: rgba(255, 181, 71, 0.5); color: var(--page-link); }
+      .column { width: 960px; max-width: calc(100vw - 32px); margin: 0 auto 60px; background: var(--page-bg2); box-shadow: 0 0 0 1px var(--line), 0 30px 80px rgba(0, 0, 0, 0.5); }
+      .column > img.banner { display: block; width: 100%; height: auto; }
+      .body { display: grid; grid-template-columns: 1fr 300px; gap: 28px; padding: 28px; }
+      @media (max-width: 760px) { .body { grid-template-columns: 1fr; } }
+      h1 { margin: 0 0 4px; font-family: var(--font-pixel); color: var(--page-header); font-size: 34px; line-height: 1.1; }
+      .tagline { margin: 0 0 22px; color: var(--text-2); }
+      .desc h3 { margin: 22px 0 6px; font-family: var(--font-pixel); color: var(--page-header); font-size: 19px; font-weight: 600; }
+      .desc ul { margin: 0; padding-left: 20px; }
+      .desc li { margin: 3px 0; }
+      .desc p { margin: 12px 0; }
+      .desc code { font-family: var(--font-mono); font-size: 0.9em; padding: 1px 5px; border-radius: 4px; background: var(--bg-0); }
+      .desc em { color: var(--text-2); }
+      a { color: var(--page-link); }
+      .download { margin-top: 28px; padding: 18px; border-radius: 10px; background: var(--bg-0); }
+      .download .row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+      .btn { height: 40px; padding: 0 18px; border: 0; border-radius: 6px; background: var(--page-button); color: var(--accent-ink); font: inherit; font-weight: 800; }
+      .price { color: var(--text-2); font-size: 14px; }
+      .files { margin: 14px 0 0; padding: 0; list-style: none; font-size: 14px; }
+      .files li { display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid var(--line); }
+      .files .size { color: var(--text-3); font-family: var(--font-mono); font-size: 12px; }
+      .shots { display: grid; gap: 10px; align-content: start; }
+      .shots img { display: block; width: 100%; border-radius: 6px; box-shadow: 0 0 0 1px var(--line); cursor: zoom-in; }
+      .shots img.gif { image-rendering: pixelated; }
+      .lightbox { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0, 0, 0, 0.85); cursor: zoom-out; }
+      .lightbox.on { display: grid; }
+      .lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 8px; }
+      .meta { margin-top: 26px; font-size: 13px; color: var(--text-3); }
+      .meta b { color: var(--text-2); font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <div class="bar">
+      <span>Preview · description language</span>
+      <button data-lang="en" class="on">English</button>
+      <button data-lang="tr">Türkçe</button>
+    </div>
+    <div class="column">
+      <img class="banner" src="out/banner-960x300.png" alt="Loomlight" />
+      <div class="body">
+        <div>
+          <h1>Loomlight</h1>
+          <p class="tagline" id="tagline"></p>
+          <div class="desc" id="desc">Loading page.md…</div>
+          <div class="download">
+            <div class="row">
+              <button class="btn" id="dl">Download Now</button>
+              <span class="price" id="price">Name your own price — $0 or more</span>
+            </div>
+            <ul class="files">
+              <li><span>Loomlight-Setup-0.1.0.exe <span class="price">· Windows</span></span><span class="size">100 MB</span></li>
+              <li><span>Loomlight-0.1.0-x64.zip <span class="price">· Windows, portable</span></span><span class="size">140 MB</span></li>
+            </ul>
+          </div>
+          <div class="meta" id="meta"></div>
+        </div>
+        <div class="shots" id="shots"></div>
+      </div>
+    </div>
+    <div class="lightbox" id="lightbox"><img alt="" /></div>
+    <script>
+      const SHOTS = [
+        ['demo/lantern.gif', 'gif'],
+        ['out/screens/01-editor.png'],
+        ['out/screens/03-indexed-shading.png'],
+        ['out/screens/04-tiled.png'],
+        ['out/screens/02-export.png'],
+        ['out/screens/05-light.png']
+      ]
+      const UI = {
+        en: { dl: 'Download Now', price: 'Name your own price — $0 or more', meta: '<b>Tool</b> · Windows · Open source (GPL-3.0) · English, Turkish' },
+        tr: { dl: 'Şimdi indir', price: 'Fiyatı sen belirle — $0 ya da daha fazlası', meta: '<b>Araç</b> · Windows · Açık kaynak (GPL-3.0) · İngilizce, Türkçe' }
+      }
+
+      const shots = document.getElementById('shots')
+      const box = document.getElementById('lightbox')
+      for (const [src, kind] of SHOTS) {
+        const img = document.createElement('img')
+        img.src = src
+        if (kind) img.className = kind
+        img.onclick = () => {
+          box.querySelector('img').src = src
+          box.classList.add('on')
+        }
+        shots.appendChild(img)
+      }
+      box.onclick = () => box.classList.remove('on')
+
+      // a tiny Markdown subset: **Heading** lines, "- " lists, paragraphs, **bold**, *italic*, `code`
+      const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      const inline = (s) =>
+        esc(s)
+          .replace(/`([^`]+)`/g, '<code>$1</code>')
+          .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+      function render(md) {
+        let html = ''
+        let list = false
+        for (const raw of md.split('\n')) {
+          const line = raw.trim()
+          if (line.startsWith('- ')) {
+            if (!list) html += '<ul>'
+            list = true
+            html += `<li>${inline(line.slice(2))}</li>`
+            continue
+          }
+          if (list) html += '</ul>'
+          list = false
+          if (!line) continue
+          if (/^\*\*[^*]+\*\*$/.test(line)) html += `<h3>${esc(line.slice(2, -2))}</h3>`
+          else html += `<p>${inline(line)}</p>`
+        }
+        return html + (list ? '</ul>' : '')
+      }
+
+      let page = ''
+      const section = (from, to) => {
+        const a = page.indexOf(from)
+        const b = page.indexOf(to, a + 1)
+        return a < 0 ? '' : page.slice(page.indexOf('\n', a) + 1, b < 0 ? undefined : b)
+      }
+      function show(lang) {
+        document.querySelectorAll('.bar button').forEach((b) => b.classList.toggle('on', b.dataset.lang === lang))
+        document.documentElement.lang = lang
+        document.getElementById('desc').innerHTML = render(lang === 'en' ? section('## 3.', '## 4.') : section('## 4.', '## 5.'))
+        const tag = /Short description \/ tagline \| `([^`]+)`/.exec(page)
+        document.getElementById('tagline').textContent = tag ? tag[1] : ''
+        document.getElementById('dl').textContent = UI[lang].dl
+        document.getElementById('price').textContent = UI[lang].price
+        document.getElementById('meta').innerHTML = UI[lang].meta
+      }
+      document.querySelectorAll('.bar button').forEach((b) => (b.onclick = () => show(b.dataset.lang)))
+      fetch('page.md')
+        .then((r) => r.text())
+        .then((t) => {
+          page = t
+          show('en')
+        })
+        .catch(() => (document.getElementById('desc').textContent = 'Open this page through a local server (see .claude/launch.json → itch-preview).'))
+    </script>
+  </body>
+</html>

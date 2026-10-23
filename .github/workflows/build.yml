@@ -1,0 +1,48 @@
+# Builds Loomlight packages on all three platforms (decision 016).
+# Runs only when started by hand or on a version tag; never publishes —
+# packages are uploaded as workflow artifacts for the maintainer to check.
+name: Build packages
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: --win
+          - os: macos-latest
+            target: --mac
+          - os: ubuntu-latest
+            target: --linux
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run i18n:check
+      - run: npx electron-vite build
+      - run: npx electron-builder ${{ matrix.target }} --publish never
+        env:
+          # unsigned builds: no certificates in CI yet
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: loomlight-${{ matrix.os }}
+          path: |
+            dist/*.exe
+            dist/*.zip
+            dist/*.dmg
+            dist/*.AppImage
+            dist/*.deb
+          if-no-files-found: error

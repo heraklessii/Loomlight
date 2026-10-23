@@ -1,0 +1,30 @@
+Loomlight — third-party notices
+================================
+
+Loomlight is licensed under the GNU General Public License v3.0 or later
+(see LICENSE). It includes or bundles the following third-party components.
+
+Runtime
+-------
+- Electron — MIT License — https://github.com/electron/electron
+- React, React DOM — MIT License — https://github.com/facebook/react
+- Zustand — MIT License — https://github.com/pmndrs/zustand
+
+Fonts (bundled, SIL Open Font License 1.1)
+------------------------------------------
+- Plus Jakarta Sans — Tokotype — https://github.com/tokotype/PlusJakartaSans
+- Pixelify Sans — Stefie Justprince — https://github.com/eifetx/Pixelify-Sans
+- JetBrains Mono — JetBrains — https://github.com/JetBrains/JetBrainsMono
+  Packaged through Fontsource (MIT) — https://fontsource.org
+
+Palettes (colour lists, credited to their authors)
+--------------------------------------------------
+- Endesga 32 — ENDESGA
+- PICO-8 palette — Lexaloffle Games
+- Sweetie 16 — GrafxKid
+- DawnBringer 16 — DawnBringer
+
+Algorithms
+----------
+- Ellipse rasterisation after Alois Zingl, "A Rasterizing Algorithm for
+  Drawing Curves" (2012).

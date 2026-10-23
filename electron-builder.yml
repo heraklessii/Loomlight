@@ -1,0 +1,62 @@
+# Packages (decision 016): Windows NSIS + zip (npm run dist), macOS dmg + zip
+# (dist:mac, on a Mac), Linux AppImage + deb (dist:linux, on Linux).
+# GPL-3.0 (decision 003). Unsigned: signing is a later, user-approved step.
+appId: org.loomlight.app
+productName: Loomlight
+copyright: Copyright © 2026 Loomlight contributors
+directories:
+  output: dist
+  buildResources: build
+files:
+  - out/**
+  - package.json
+  - '!**/*.map'
+asar: true
+extraResources:
+  - from: LICENSE
+    to: LICENSE.txt
+  - from: THIRD-PARTY-NOTICES.txt
+    to: THIRD-PARTY-NOTICES.txt
+fileAssociations:
+  - ext: loom
+    name: Loomlight sprite
+    description: Loomlight sprite
+    role: Editor
+win:
+  icon: build/icon.png
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: zip
+      arch: [x64]
+  artifactName: ${productName}-${version}-${arch}.${ext}
+mac:
+  icon: build/icon.png
+  category: public.app-category.graphics-design
+  target:
+    - target: dmg
+      arch: [x64, arm64]
+    - target: zip
+      arch: [x64, arm64]
+  artifactName: ${productName}-${version}-mac-${arch}.${ext}
+linux:
+  icon: build/icon.png
+  category: Graphics
+  synopsis: Pixel art editor and sprite animation tool
+  target:
+    - target: AppImage
+      arch: [x64]
+    - target: deb
+      arch: [x64]
+  artifactName: ${productName}-${version}-linux-${arch}.${ext}
+deb:
+  maintainer: Loomlight contributors <noreply@loomlight.invalid>
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  license: LICENSE
+  artifactName: ${productName}-Setup-${version}.${ext}
+npmRebuild: false
+publish: null

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Loomlight — itch.io banner (960×300)</title>
+    <link rel="stylesheet" href="assets.css" />
+    <style>
+      body { width: 960px; height: 300px; }
+      .banner {
+        position: relative;
+        width: 960px;
+        height: 300px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 80% 60%, rgba(255, 181, 71, 0.2), transparent 34%),
+          var(--bg-0);
+        border-bottom: 1px solid var(--line);
+      }
+      .row { position: absolute; left: 56px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 28px; }
+      .mark { --s: 12px; }
+      .wordmark { font-size: 76px; }
+      .sub { margin-top: 10px; font-size: 17px; font-weight: 600; color: var(--text-2); }
+      .sub em { font-style: normal; color: var(--accent); }
+      .art { position: absolute; right: 56px; top: 40px; width: 220px; height: 220px; }
+      .art img { width: 220px; height: 220px; border-radius: 16px; box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(0, 0, 0, 0.5); }
+    </style>
+  </head>
+  <body>
+    <div class="banner weave">
+      <div class="row">
+        <div class="mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div>
+          <div class="wordmark">Loom<b>light</b></div>
+          <div class="sub">Pixel art &amp; animation editor — <em>free</em> and open source</div>
+        </div>
+      </div>
+      <div class="art"><img class="pixel" src="demo/lantern-1x.png" alt="" /></div>
+    </div>
+  </body>
+</html>

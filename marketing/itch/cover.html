@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Loomlight — itch.io cover (630×500)</title>
+    <link rel="stylesheet" href="assets.css" />
+    <style>
+      body { width: 630px; height: 500px; }
+      .cover {
+        position: relative;
+        width: 630px;
+        height: 500px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 74% 52%, rgba(255, 181, 71, 0.22), transparent 42%),
+          radial-gradient(ellipse 90% 70% at 20% 0%, rgba(255, 181, 71, 0.06), transparent 70%),
+          var(--bg-0);
+      }
+      .cover::before { content: ''; position: absolute; inset: 0; }
+      .copy { position: absolute; left: 36px; top: 56px; width: 300px; }
+      .mark { --s: 9px; margin-bottom: 22px; }
+      .wordmark { font-size: 54px; }
+      .tagline { margin: 14px 0 22px; font-size: 19px; font-weight: 600; line-height: 1.3; color: var(--text-1); }
+      .tagline em { font-style: normal; color: var(--accent); }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .art {
+        position: absolute;
+        right: 30px;
+        top: 96px;
+        width: 248px;
+        height: 276px;
+        padding: 14px;
+        border-radius: 22px;
+        background: var(--bg-1);
+        box-shadow: 0 0 0 1px var(--line), 0 30px 70px rgba(0, 0, 0, 0.55);
+      }
+      .art img { display: block; width: 220px; height: 220px; border-radius: 10px; }
+      .art .caption { margin-top: 9px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-3); }
+      .art .caption b { color: var(--accent); font-weight: 600; }
+      .footer { position: absolute; left: 40px; bottom: 34px; font-family: var(--font-mono); font-size: 13px; color: var(--text-3); letter-spacing: 0.02em; }
+    </style>
+  </head>
+  <body>
+    <div class="cover weave">
+      <div class="copy">
+        <div class="mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="wordmark">Loom<b>light</b></div>
+        <p class="tagline">Pixel art &amp; animation editor.<br /><em>Free</em> and open source.</p>
+        <div class="chips">
+          <span class="chip amber">Free</span>
+          <span class="chip">Layers &amp; frames</span>
+        </div>
+      </div>
+      <div class="art">
+        <img class="pixel" src="demo/lantern-1x.png" alt="" />
+        <div class="caption"><span>lantern.loom</span><span>32×32 · <b>4 frames</b></span></div>
+      </div>
+      <div class="footer">pixel-exact · offline · EN / TR</div>
+    </div>
+  </body>
+</html>

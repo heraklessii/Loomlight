@@ -1,0 +1,11 @@
+node_modules/
+out/
+dist/
+*.tsbuildinfo
+*.log
+.claude/settings.local.json
+# the author's own itch / GitHub profile assets (not part of Loomlight)
+marketing/hera-profile/
+marketing/github-profile/
+scripts/marketing/make-hera.ts
+scripts/marketing/make-scene.ts
