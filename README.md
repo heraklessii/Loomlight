@@ -23,6 +23,11 @@ sprite sheets or GIFs — pixel-exact, offline, no account.
 - Tiled mode for seamless tiles, reference image layers, `.aseprite` import
 - Aseprite-style shortcuts (all customisable), `Ctrl+K` command palette, dark and light themes, first-run tour, English and Turkish UI
 
+## Download
+
+Windows builds: [heraklessi.itch.io](https://heraklessi.itch.io) (free, optional donation).
+Other projects by the same author: [github.com/heraklessii](https://github.com/heraklessii).
+
 ## Development
 
 ```bash

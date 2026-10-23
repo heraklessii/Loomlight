@@ -21,6 +21,7 @@ by the user (or with Claude in the browser, on the user's go-ahead).
 | Screenshots | `demo/lantern.gif` + `out/screens/01-editor.png`, `03-indexed-shading.png`, `04-tiled.png`, `02-export.png`, `05-light.png` (1280×800, real app) |
 | Tags (max 10) | `pixel-art`, `sprites`, `animation`, `aseprite`, `gif`, `tileset`, `open-source`, `free`, `2d`, `editor` |
 | Community | Comments: on |
+| Links (sidebar / *More information*) | Source code → `https://github.com/heraklessii/Loomlight` |
 | Visibility | **Draft** until the user approves |
 
 ## 2. Theme (Edit theme)
@@ -68,6 +69,7 @@ by the user (or with Claude in the browser, on the user's go-ahead).
 
 **Free and open**
 - GPL-3.0, no account, no cloud, no telemetry — works fully offline
+- Source code on GitHub: **github.com/heraklessii/Loomlight** — issues and pull requests welcome
 - Interface in English and Turkish
 - Crash recovery: an autosaved copy is offered if the app ever closes unexpectedly
 
@@ -104,6 +106,7 @@ by the user (or with Claude in the browser, on the user's go-ahead).
 
 **Ücretsiz ve açık**
 - GPL-3.0; hesap yok, bulut yok, telemetri yok — tamamen çevrimdışı çalışır
+- Kaynak kodu GitHub'da: **github.com/heraklessii/Loomlight** — hata bildirimi ve katkılara açık
 - Arayüz İngilizce ve Türkçe
 - Çökme kurtarma: program beklenmedik kapanırsa otomatik kaydedilen kopya sunulur
 

@@ -18,6 +18,17 @@ top). Format:
 
 ---
 
+## 2026-10-23 — Public on GitHub + HERA GitHub profile
+
+**Done (user approved publishing both):**
+- Loomlight is public: https://github.com/heraklessii/Loomlight (GPL-3.0 detected by GitHub, description + 10 topics). `git init` here, first commit `d07a9b9`. `.gitignore` keeps the author's own profile assets (`marketing/hera-profile/`, `marketing/github-profile/`, `make-hera.ts`, abandoned `make-scene.ts`) out of the repo.
+- GitHub profile README (heraklessii/heraklessii) rewritten: HERA banner, open-source table (Loomlight, Muivly, Muiren, Muiply, Muiget, Muifly, Muiren Bot, Ved: Recure TR) with licences, games/studio apps listed as itch-only. Draft kept in `marketing/github-profile/`.
+- GitHub links added to `marketing/itch/page.md` (EN/TR + sidebar link), HERA `profile.md` bio and `README.md` (Download section).
+
+**Known gaps / TODO:**
+- MuiLabs is public but has no licence, so it is not listed as open source. Pinned repos on the profile can only be set by the user (GitHub → Customize your pins).
+- The CI workflow has not run on GitHub yet (check its trigger before the first release tag).
+
 ## 2026-10-23 — HERA creator profile assets (user's own itch page)
 
 **Done:**
